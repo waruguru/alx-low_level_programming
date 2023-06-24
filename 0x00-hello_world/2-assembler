@@ -1,5 +1,3 @@
 #!/bin/bash
-
 CFILE="2-main.c"
 gcc -S $CFILE && cat "${CFILE%.c}.s"
-
