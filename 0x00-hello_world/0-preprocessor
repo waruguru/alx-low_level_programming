@@ -1,9 +1,6 @@
 #!/bin/bash
 
-CFILE=$CFILE
-OUTPUT_FILE="c"
+cpp -P $CFILE > c
 
-cpp -P $CFILE | sed '/^$/d; /^#/d; s/\/\*.*\*\///g; s/\/\/.*//g' > $OUTPUT_FILE
-
-tail $OUTPUT_FILE
+tail c
 
