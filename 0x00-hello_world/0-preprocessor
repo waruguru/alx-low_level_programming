@@ -1,42 +1,33 @@
 #!/bin/bash
 
-# Check if the file 0-preprocessor is present
 if [ ! -e 0-preprocessor ]; then
     echo "File 0-preprocessor is not present"
     exit 1
 fi
 
-# Check if README.md exists and is not empty
 if [ ! -s README.md ]; then
     echo "README.md does not exist or is empty"
     exit 1
 fi
 
-# Get the line count of 0-preprocessor
 line_count=$(wc -l < 0-preprocessor)
 
-# Check if the line count is exactly 2
 if [ "$line_count" -ne 2 ]; then
     echo "File 0-preprocessor contains $line_count lines, it should be 2"
     exit 1
 fi
 
-# Check if the first line of 0-preprocessor contains "#!/bin/bash"
 first_line=$(head -n 1 0-preprocessor)
+
 if [ "$first_line" != "#!/bin/bash" ]; then
     echo "First line of 0-preprocessor does not contain #!/bin/bash"
     exit 1
 fi
 
-# Get the C file name from the environment variable
 CFILE=$CFILE
-
-# Specify the output file name
 OUTPUT_FILE="c"
 
-# Run the C file through the preprocessor, remove comments, and save the result
 cpp -P $CFILE | sed '/^$/d; /^#/d; s/\/\*.*\*\///g; s/\/\/.*//g' > $OUTPUT_FILE
 
-# Display the last few lines of the output file for verification
 tail $OUTPUT_FILE
 
