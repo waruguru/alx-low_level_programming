@@ -1,4 +1,5 @@
-	.file	"2-main.c"
+#!/bin/bash	
+.file	"2-main.c"
 	.text
 	.section	.rodata
 .LC0:
