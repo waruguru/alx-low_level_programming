@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check if the file 0-preprocessor is present
+if [ ! -e 0-preprocessor ]; then
+    echo "File 0-preprocessor is not present"
+    exit 1
+fi
+
 # Check if README.md exists and is not empty
 if [ ! -s README.md ]; then
     echo "README.md does not exist or is empty"
@@ -7,13 +13,15 @@ if [ ! -s README.md ]; then
 fi
 
 # Check if the file 0-preprocessor has exactly 2 lines
-if [ $(wc -l < 0-preprocessor) -ne 2 ]; then
-    echo "File 0-preprocessor must be 2 lines long"
+line_count=$(wc -l < 0-preprocessor)
+if [ "$line_count" -ne 2 ]; then
+    echo "File 0-preprocessor contains $line_count lines, it should be 2"
     exit 1
 fi
 
 # Check if the first line of 0-preprocessor contains "#!/bin/bash"
-if [ "$(head -n 1 0-preprocessor)" != "#!/bin/bash" ]; then
+first_line=$(head -n 1 0-preprocessor)
+if [ "$first_line" != "#!/bin/bash" ]; then
     echo "First line of 0-preprocessor does not contain #!/bin/bash"
     exit 1
 fi
