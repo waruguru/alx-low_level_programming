@@ -12,8 +12,10 @@ if [ ! -s README.md ]; then
     exit 1
 fi
 
-# Check if the file 0-preprocessor has exactly 2 lines
+# Get the line count of 0-preprocessor
 line_count=$(wc -l < 0-preprocessor)
+
+# Check if the line count is exactly 2
 if [ "$line_count" -ne 2 ]; then
     echo "File 0-preprocessor contains $line_count lines, it should be 2"
     exit 1
