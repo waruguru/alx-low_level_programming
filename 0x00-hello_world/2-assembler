@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -S /alx-low_level_programming/0x00-hello_world/2-main.c && cat "2-main.s"
+CFILE="2-main.c"; gcc -S $CFILE; cat "${CFILE%.c}.s"
